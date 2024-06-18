@@ -1,7 +1,6 @@
-const { Timestamp } = require('mongodb');
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const contentSchema = mongoose.Schema(
+const contentSchema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -33,9 +32,8 @@ const contentSchema = mongoose.Schema(
     {
         timestamps: true
     }
-)
+);
 
 const Content = mongoose.model("Content", contentSchema);
 
-module.exports = Content;
-
+export default Content;
