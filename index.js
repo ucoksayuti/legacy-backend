@@ -1,17 +1,16 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 dotenv.config();
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const path = require('path');
-const app = express();
-const port = 5000;
-const Content = require('./models/contentModel');
-const User = require('./models/usersModel');
-const jwt = require('jsonwebtoken');
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
+import path from 'path';
+import jwt from 'jsonwebtoken';
+import Content from './models/contentModel.js';
+import User from './models/usersModel.js';
 
 app.use(express.json());
 app.use(cors());  // Tambahkan cors middleware jika diperlukan
