@@ -137,13 +137,13 @@ app.post('/login', async (req, res) => {
     }
 });
 
-mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.URI)
     .then(() => {
         app.listen(port, () => {
             console.log(`Server berjalan di http://localhost:${port}`);
         });
-        console.log('Connected to mongoDB');
+        console.log('Connected to MongoDB');
     })
     .catch((error) => {
-        console.log('Error connecting to MongoDB:', error.message);
+        console.error('Error connecting to MongoDB:', error.message);
     });
