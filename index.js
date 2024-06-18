@@ -1,17 +1,18 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 dotenv.config();
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const path = require('path');
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
+import path from 'path';
+import jwt from 'jsonwebtoken';
+import Content from './models/contentModel.js';
+import User from './models/usersModel.js';
+
 const app = express();
-const port = 5000;
-const Content = require('./models/contentModel');
-const User = require('./models/usersModel');
-const jwt = require('jsonwebtoken');
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());  // Tambahkan cors middleware jika diperlukan
@@ -73,10 +74,7 @@ app.delete('/content/:id', async (req, res) => {
     }
 });
 
-
-
 // Register
-
 app.post('/signup', async (req, res) => {
     try {
         const { email, password, confirm_password } = req.body;
@@ -113,7 +111,6 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-
 // Endpoint login
 app.post('/login', async (req, res) => {
     try {
@@ -141,12 +138,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
-
-
-
-
-mongoose.connect(process.env.URI)
+mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(port, () => {
             console.log(`Server berjalan di http://localhost:${port}`);
@@ -156,7 +148,3 @@ mongoose.connect(process.env.URI)
     .catch((error) => {
         console.log('Error connecting to MongoDB:', error.message);
     });
-
-
-
-
