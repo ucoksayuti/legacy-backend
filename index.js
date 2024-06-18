@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv'
+dotenv.config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -143,7 +146,7 @@ app.post('/login', async (req, res) => {
 
 
 
-mongoose.connect('mongodb://sayuti123:ucok123@ac-huf940l-shard-00-00.45ehmnd.mongodb.net:27017,ac-huf940l-shard-00-01.45ehmnd.mongodb.net:27017,ac-huf940l-shard-00-02.45ehmnd.mongodb.net:27017/Legacy-API?ssl=true&replicaSet=atlas-57pm5q-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.URI)
     .then(() => {
         app.listen(port, () => {
             console.log(`Server berjalan di http://localhost:${port}`);
